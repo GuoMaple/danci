@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习课程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+        
+        .section {
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: relative;
+        }
+        
+        .section.active {
+            display: flex;
+        }
+        
+        /* Section A - 封面 */
+        #section-a {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        #section-a .cover-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        #section-a .cover-img {
+            max-width: 70%;
+            max-height: 60vh;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+        
+        #section-a .story-title {
+            font-size: 2.5em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        #section-a .start-btn {
+            padding: 20px 60px;
+            font-size: 1.5em;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+            transition: all 0.3s;
+        }
+        
+        #section-a .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255,107,107,0.5);
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 25px;
+            font-size: 1em;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Section B - 视频 */
+        #section-b {
+            background: black;
+            flex-direction: column;
+        }
+        
+        #section-b video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        #section-b .video-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            gap: 30px;
+        }
+        
+        #section-b .video-controls.show {
+            display: flex;
+        }
+        
+        #section-b .video-controls button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        #section-b .replay-btn {
+            background: #4ecdc4;
+            color: white;
+        }
+        
+        #section-b .continue-btn {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        #section-b .video-controls button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Section C - 单词学习 */
+        #section-c {
+            flex-direction: column;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 30px;
+        }
+        
+        #section-c h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        #section-c .words-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex: 1;
+            align-items: center;
+        }
+        
+        #section-c .word-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        #section-c .word-text {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        #section-c .word-img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        
+        #section-c .word-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        #section-c .word-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        #section-c .play-btn {
+            background: #4ecdc4;
+            color: white;
+        }
+        
+        #section-c .record-btn {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        #section-c .record-btn.recording {
+            background: #ff0000;
+            animation: pulse 1s infinite;
+        }
+        
+        #section-c .listen-btn {
+            background: #667eea;
+            color: white;
+        }
+        
+        #section-c .listen-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        #section-c .word-btn:hover:not(:disabled) {
+            transform: scale(1.1);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        #section-c .next-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
+            transition: all 0.3s;
+        }
+        
+        #section-c .next-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Section D - 绘本 */
+        #section-d {
+            background: #333;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #section-d .picture-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #section-d .picture-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        #section-d .picture-controls {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        #section-d .picture-controls button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        #section-d .replay-pic-btn {
+            background: #4ecdc4;
+            color: white;
+        }
+        
+        #section-d .next-pic-btn {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        #section-d .picture-controls button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Section A - 封面 -->
+    <div id="section-a" class="section active">
+        <button class="back-btn" id="backBtn">返回</button>
+        <div class="cover-container">
+            <img src="封面.jpg" class="cover-img" alt="封面">
+            <h2 class="story-title" id="storyTitle"></h2>
+            <button class="start-btn" id="startBtn">开始</button>
+        </div>
+    </div>
+    
+    <!-- Section B - 开场视频 -->
+    <div id="section-b" class="section">
+        <video id="openingVideo" src="开场视频.mp4" playsinline></video>
+        <div class="video-controls" id="videoControls">
+            <button class="replay-btn" id="replayVideoBtn">重播</button>
+            <button class="continue-btn" id="continueBtn">继续</button>
+        </div>
+    </div>
+    
+    <!-- Section C - 单词学习 -->
+    <div id="section-c" class="section">
+        <button class="back-btn" id="backBtnC">返回</button>
+        <h1>学习新单词</h1>
+        <div class="words-container">
+            <div class="word-card">
+                <div class="word-text" id="word1Text"></div>
+                <img src="单词A主图.jpg" class="word-img" alt="单词A">
+                <div class="word-buttons">
+                    <button class="word-btn play-btn" id="playWord1Btn">🔊</button>
+                    <button class="word-btn record-btn" id="recordWord1Btn">🎤</button>
+                    <button class="word-btn listen-btn" id="listenWord1Btn" disabled>🎧</button>
+                </div>
+            </div>
+            <div class="word-card">
+                <div class="word-text" id="word2Text"></div>
+                <img src="单词B主图.jpg" class="word-img" alt="单词B">
+                <div class="word-buttons">
+                    <button class="word-btn play-btn" id="playWord2Btn">🔊</button>
+                    <button class="word-btn record-btn" id="recordWord2Btn">🎤</button>
+                    <button class="word-btn listen-btn" id="listenWord2Btn" disabled>🎧</button>
+                </div>
+            </div>
+        </div>
+        <button class="next-btn" id="nextSectionBtn">继续</button>
+    </div>
+    
+    <!-- Section D - 绘本 -->
+    <div id="section-d" class="section">
+        <div class="picture-container">
+            <img class="picture-img" id="pictureImg" src="">
+        </div>
+        <audio id="pictureAudio"></audio>
+        <div class="picture-controls" id="pictureControls">
+            <button class="replay-pic-btn" id="replayPicBtn">重播</button>
+            <button class="next-pic-btn" id="nextPicBtn">下一页</button>
+        </div>
+    </div>
+    
+    <script>
+        const storyTitle = '小猫和小狗的故事';
+        const word1Text = 'dog 狗';
+        const word2Text = 'cat 猫';
+        const totalPictures = 6;
+        let currentPicture = 1;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let recordingTimer = null;
+        
+        let recording1Exists = false;
+        let recording2Exists = false;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('storyTitle').textContent = storyTitle;
+            document.getElementById('word1Text').textContent = word1Text;
+            document.getElementById('word2Text').textContent = word2Text;
+            
+            checkRecordings();
+            setupEventListeners();
+        });
+        
+        function setupEventListeners() {
+            document.getElementById('startBtn').addEventListener('click', goToSectionB);
+            document.getElementById('continueBtn').addEventListener('click', goToSectionC);
+            document.getElementById('replayVideoBtn').addEventListener('click', replayVideo);
+            document.getElementById('nextSectionBtn').addEventListener('click', goToSectionD);
+            
+            document.getElementById('playWord1Btn').addEventListener('click', () => playAudio('单词A发音.mp3'));
+            document.getElementById('playWord2Btn').addEventListener('click', () => playAudio('单词B发音.mp3'));
+            
+            setupRecordingButtons();
+            
+            document.getElementById('listenWord1Btn').addEventListener('click', () => playAudio('录音1.mp3'));
+            document.getElementById('listenWord2Btn').addEventListener('click', () => playAudio('录音2.mp3'));
+            
+            document.getElementById('replayPicBtn').addEventListener('click', replayCurrentAudio);
+            document.getElementById('nextPicBtn').addEventListener('click', nextPicture);
+            
+            document.getElementById('openingVideo').addEventListener('ended', showVideoControls);
+        }
+        
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+        
+        function goToSectionB() {
+            showSection('section-b');
+            document.getElementById('openingVideo').play();
+        }
+        
+        function showVideoControls() {
+            document.getElementById('videoControls').classList.add('show');
+        }
+        
+        function replayVideo() {
+            document.getElementById('videoControls').classList.remove('show');
+            document.getElementById('openingVideo').currentTime = 0;
+            document.getElementById('openingVideo').play();
+        }
+        
+        function goToSectionC() {
+            showSection('section-c');
+        }
+        
+        function goToSectionD() {
+            showSection('section-d');
+            currentPicture = 1;
+            loadPicture();
+        }
+        
+        function playAudio(src) {
+            const audio = new Audio(src);
+            audio.play().catch(e => console.log('播放音频失败:', e));
+        }
+        
+        function setupRecordingButtons() {
+            const recordBtn1 = document.getElementById('recordWord1Btn');
+            const recordBtn2 = document.getElementById('recordWord2Btn');
+            
+            recordBtn1.addEventListener('mousedown', () => startRecording(1));
+            recordBtn1.addEventListener('mouseup', () => stopRecording());
+            recordBtn1.addEventListener('mouseleave', () => stopRecording());
+            recordBtn1.addEventListener('touchstart', (e) => { e.preventDefault(); startRecording(1); });
+            recordBtn1.addEventListener('touchend', () => stopRecording());
+            
+            recordBtn2.addEventListener('mousedown', () => startRecording(2));
+            recordBtn2.addEventListener('mouseup', () => stopRecording());
+            recordBtn2.addEventListener('mouseleave', () => stopRecording());
+            recordBtn2.addEventListener('touchstart', (e) => { e.preventDefault(); startRecording(2); });
+            recordBtn2.addEventListener('touchend', () => stopRecording());
+        }
+        
+        let currentRecordingNum = 0;
+        
+        async function startRecording(num) {
+            try {
+                currentRecordingNum = num;
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                
+                mediaRecorder.ondataavailable = (e) => {
+                    audioChunks.push(e.data);
+                };
+                
+                mediaRecorder.onstop = () => {
+                    saveRecording();
+                };
+                
+                mediaRecorder.start();
+                
+                if (num === 1) {
+                    document.getElementById('recordWord1Btn').classList.add('recording');
+                } else {
+                    document.getElementById('recordWord2Btn').classList.add('recording');
+                }
+                
+                recordingTimer = setTimeout(() => {
+                    stopRecording();
+                }, 3000);
+                
+            } catch (e) {
+                console.error('录音失败:', e);
+                alert('无法访问麦克风，请检查权限设置');
+            }
+        }
+        
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+            }
+            
+            if (recordingTimer) {
+                clearTimeout(recordingTimer);
+                recordingTimer = null;
+            }
+            
+            document.getElementById('recordWord1Btn').classList.remove('recording');
+            document.getElementById('recordWord2Btn').classList.remove('recording');
+        }
+        
+        function saveRecording() {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+            const url = URL.createObjectURL(audioBlob);
+            
+            if (currentRecordingNum === 1) {
+                recording1Exists = true;
+                document.getElementById('listenWord1Btn').disabled = false;
+                window.recordedAudio1 = url;
+            } else {
+                recording2Exists = true;
+                document.getElementById('listenWord2Btn').disabled = false;
+                window.recordedAudio2 = url;
+            }
+        }
+        
+        function checkRecordings() {
+        }
+        
+        function loadPicture() {
+            document.getElementById('pictureImg').src = `绘本画面 ${currentPicture}.jpg`;
+            const audio = document.getElementById('pictureAudio');
+            audio.src = `绘本画面 ${currentPicture} 配音.mp3`;
+            audio.play().catch(e => console.log('播放音频失败:', e));
+        }
+        
+        function replayCurrentAudio() {
+            const audio = document.getElementById('pictureAudio');
+            audio.currentTime = 0;
+            audio.play().catch(e => console.log('播放音频失败:', e));
+        }
+        
+        function nextPicture() {
+            if (currentPicture < totalPictures) {
+                currentPicture++;
+                loadPicture();
+            }
+        }
+    </script>
+</body>
+</html>

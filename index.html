@@ -146,20 +146,20 @@
         }
         
         /* Section C - 单词学习 */
-        #section-c {
+        #section-c, #section-e {
             flex-direction: column;
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             padding: 30px;
         }
         
-        #section-c h1 {
+        #section-c h1, #section-e h1 {
             font-size: 2.5em;
             text-align: center;
             margin-bottom: 30px;
             color: #333;
         }
         
-        #section-c .words-container {
+        #section-c .words-container, #section-e .words-container {
             display: flex;
             justify-content: center;
             gap: 50px;
@@ -167,7 +167,7 @@
             align-items: center;
         }
         
-        #section-c .word-card {
+        #section-c .word-card, #section-e .word-card {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -177,14 +177,14 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
         
-        #section-c .word-text {
+        #section-c .word-text, #section-e .word-text {
             font-size: 2em;
             font-weight: bold;
             margin-bottom: 20px;
             color: #333;
         }
         
-        #section-c .word-img {
+        #section-c .word-img, #section-e .word-img {
             width: 250px;
             height: 250px;
             object-fit: cover;
@@ -192,12 +192,12 @@
             margin-bottom: 20px;
         }
         
-        #section-c .word-buttons {
+        #section-c .word-buttons, #section-e .word-buttons {
             display: flex;
             gap: 15px;
         }
         
-        #section-c .word-btn {
+        #section-c .word-btn, #section-e .word-btn {
             width: 60px;
             height: 60px;
             border: none;
@@ -210,32 +210,32 @@
             transition: all 0.3s;
         }
         
-        #section-c .play-btn {
+        #section-c .play-btn, #section-e .play-btn {
             background: #4ecdc4;
             color: white;
         }
         
-        #section-c .record-btn {
+        #section-c .record-btn, #section-e .record-btn {
             background: #ff6b6b;
             color: white;
         }
         
-        #section-c .record-btn.recording {
+        #section-c .record-btn.recording, #section-e .record-btn.recording {
             background: #ff0000;
             animation: pulse 1s infinite;
         }
         
-        #section-c .listen-btn {
+        #section-c .listen-btn, #section-e .listen-btn {
             background: #667eea;
             color: white;
         }
         
-        #section-c .listen-btn:disabled {
+        #section-c .listen-btn:disabled, #section-e .listen-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
         }
         
-        #section-c .word-btn:hover:not(:disabled) {
+        #section-c .word-btn:hover:not(:disabled), #section-e .word-btn:hover:not(:disabled) {
             transform: scale(1.1);
         }
         
@@ -244,7 +244,7 @@
             50% { transform: scale(1.1); }
         }
         
-        #section-c .next-btn {
+        #section-c .next-btn, #section-e .next-btn {
             position: absolute;
             bottom: 30px;
             right: 30px;
@@ -259,7 +259,7 @@
             transition: all 0.3s;
         }
         
-        #section-c .next-btn:hover {
+        #section-c .next-btn:hover, #section-e .next-btn:hover {
             transform: scale(1.05);
         }
         
@@ -315,6 +315,164 @@
         #section-d .picture-controls button:hover {
             transform: scale(1.05);
         }
+        
+        /* Section F - 练习题 */
+        #section-f {
+            flex-direction: column;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+        }
+        
+        #section-f .question-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #section-f .question-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        #section-f .question-number {
+            font-size: 1.5em;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 10px;
+        }
+        
+        #section-f .question-text {
+            font-size: 2em;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        #section-f .options-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 80%;
+            max-width: 800px;
+            flex: 1;
+            align-items: center;
+        }
+        
+        #section-f .option-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+        
+        #section-f .option-card:hover {
+            transform: scale(1.03);
+            border-color: #4ecdc4;
+        }
+        
+        #section-f .option-card.selected {
+            border-color: #4ecdc4;
+            background: #e8f8f5;
+        }
+        
+        #section-f .option-card.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        
+        #section-f .option-card.wrong {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        #section-f .option-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        #section-f .option-text {
+            font-size: 1.3em;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        #section-f .option-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 35px;
+            height: 35px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        #section-f .question-controls {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        #section-f .question-controls button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        #section-f .replay-question-btn {
+            background: #4ecdc4;
+            color: white;
+        }
+        
+        #section-f .next-question-btn {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        #section-f .question-controls button:hover {
+            transform: scale(1.05);
+        }
+        
+        #section-f .result-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 40px 60px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 2em;
+            display: none;
+        }
+        
+        #section-f .result-message.show {
+            display: block;
+        }
+        
+        #section-f .result-score {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #4ecdc4;
+        }
     </style>
 </head>
 <body>
@@ -369,10 +527,57 @@
         <div class="picture-container">
             <img class="picture-img" id="pictureImg" src="">
         </div>
-        <audio id="pictureAudio"></audio>
+        <audio id="pictureAudio">
         <div class="picture-controls" id="pictureControls">
             <button class="replay-pic-btn" id="replayPicBtn">重播</button>
             <button class="next-pic-btn" id="nextPicBtn">下一页</button>
+        </div>
+    </div>
+    
+    <!-- Section E - 复习单词（与C一致） -->
+    <div id="section-e" class="section">
+        <button class="back-btn" id="backBtnE">返回</button>
+        <h1>复习单词</h1>
+        <div class="words-container">
+            <div class="word-card">
+                <div class="word-text" id="word1TextE"></div>
+                <img src="单词A主图.jpg" class="word-img" alt="单词A">
+                <div class="word-buttons">
+                    <button class="word-btn play-btn" id="playWord1BtnE">🔊</button>
+                    <button class="word-btn record-btn" id="recordWord1BtnE">🎤</button>
+                    <button class="word-btn listen-btn" id="listenWord1BtnE" disabled>🎧</button>
+                </div>
+            </div>
+            <div class="word-card">
+                <div class="word-text" id="word2TextE"></div>
+                <img src="单词B主图.jpg" class="word-img" alt="单词B">
+                <div class="word-buttons">
+                    <button class="word-btn play-btn" id="playWord2BtnE">🔊</button>
+                    <button class="word-btn record-btn" id="recordWord2BtnE">🎤</button>
+                    <button class="word-btn listen-btn" id="listenWord2BtnE" disabled>🎧</button>
+                </div>
+            </div>
+        </div>
+        <button class="next-btn" id="nextSectionBtnE">继续</button>
+    </div>
+    
+    <!-- Section F - 练习题 -->
+    <div id="section-f" class="section">
+        <button class="back-btn" id="backBtnF">返回</button>
+        <div class="question-container">
+            <div class="question-header">
+                <div class="question-number" id="questionNumber"></div>
+                <div class="question-text" id="questionText"></div>
+            </div>
+            <div class="options-container" id="optionsContainer"></div>
+            <div class="question-controls">
+                <button class="replay-question-btn" id="replayQuestionBtn">重播</button>
+                <button class="next-question-btn" id="nextQuestionBtn" disabled>下一题</button>
+            </div>
+        </div>
+        <div class="result-message" id="resultMessage">
+            <div>练习完成！</div>
+            <div class="result-score" id="resultScore"></div>
         </div>
     </div>
     
@@ -389,10 +594,55 @@
         let recording1Exists = false;
         let recording2Exists = false;
         
+        let recording1ExistsE = false;
+        let recording2ExistsE = false;
+        
+        const questions = [
+            {
+                question: '"dog" 的中文意思是什么？',
+                options: [
+                    { label: 'A', text: '猫', img: '题目1选项A.jpg' },
+                    { label: 'B', text: '狗', img: '题目1选项B.jpg' },
+                    { label: 'C', text: '鸟', img: '题目1选项C.jpg' },
+                    { label: 'D', text: '鱼', img: '题目1选项D.jpg' }
+                ],
+                answer: 'B',
+                audio: '题目1朗读.mp3'
+            },
+            {
+                question: '"cat" 的中文意思是什么？',
+                options: [
+                    { label: 'A', text: '狗', img: '题目2选项A.jpg' },
+                    { label: 'B', text: '鸟', img: '题目2选项B.jpg' },
+                    { label: 'C', text: '猫', img: '题目2选项C.jpg' },
+                    { label: 'D', text: '鱼', img: '题目2选项D.jpg' }
+                ],
+                answer: 'C',
+                audio: '题目2朗读.mp3'
+            },
+            {
+                question: '故事里，小 dog 和小 cat 在哪里一起玩耍？',
+                options: [
+                    { label: 'A', text: '在游泳池边', img: '题目3选项A.jpg' },
+                    { label: 'B', text: '在花园里', img: '题目3选项B.jpg' },
+                    { label: 'C', text: '在教室里', img: '题目3选项C.jpg' },
+                    { label: 'D', text: '在超市里', img: '题目3选项D.jpg' }
+                ],
+                answer: 'B',
+                audio: '题目3朗读.mp3'
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedOption = null;
+        
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('storyTitle').textContent = storyTitle;
             document.getElementById('word1Text').textContent = word1Text;
             document.getElementById('word2Text').textContent = word2Text;
+            document.getElementById('word1TextE').textContent = word1Text;
+            document.getElementById('word2TextE').textContent = word2Text;
             
             checkRecordings();
             setupEventListeners();
@@ -416,6 +666,39 @@
             document.getElementById('nextPicBtn').addEventListener('click', nextPicture);
             
             document.getElementById('openingVideo').addEventListener('ended', showVideoControls);
+            
+            setupSectionEListeners();
+            setupSectionFListeners();
+        }
+        
+        function setupSectionEListeners() {
+            document.getElementById('playWord1BtnE').addEventListener('click', () => playAudio('单词A发音.mp3'));
+            document.getElementById('playWord2BtnE').addEventListener('click', () => playAudio('单词B发音.mp3'));
+            
+            const recordBtn1E = document.getElementById('recordWord1BtnE');
+            const recordBtn2E = document.getElementById('recordWord2BtnE');
+            
+            recordBtn1E.addEventListener('mousedown', () => startRecordingE(1));
+            recordBtn1E.addEventListener('mouseup', () => stopRecordingE());
+            recordBtn1E.addEventListener('mouseleave', () => stopRecordingE());
+            recordBtn1E.addEventListener('touchstart', (e) => { e.preventDefault(); startRecordingE(1); });
+            recordBtn1E.addEventListener('touchend', () => stopRecordingE());
+            
+            recordBtn2E.addEventListener('mousedown', () => startRecordingE(2));
+            recordBtn2E.addEventListener('mouseup', () => stopRecordingE());
+            recordBtn2E.addEventListener('mouseleave', () => stopRecordingE());
+            recordBtn2E.addEventListener('touchstart', (e) => { e.preventDefault(); startRecordingE(2); });
+            recordBtn2E.addEventListener('touchend', () => stopRecordingE());
+            
+            document.getElementById('listenWord1BtnE').addEventListener('click', () => playAudio('录音1E.mp3'));
+            document.getElementById('listenWord2BtnE').addEventListener('click', () => playAudio('录音2E.mp3'));
+            
+            document.getElementById('nextSectionBtnE').addEventListener('click', goToSectionF);
+        }
+        
+        function setupSectionFListeners() {
+            document.getElementById('replayQuestionBtn').addEventListener('click', replayQuestionAudio);
+            document.getElementById('nextQuestionBtn').addEventListener('click', nextQuestion);
         }
         
         function showSection(sectionId) {
@@ -535,6 +818,71 @@
             }
         }
         
+        let currentRecordingNumE = 0;
+        
+        async function startRecordingE(num) {
+            try {
+                currentRecordingNumE = num;
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                
+                mediaRecorder.ondataavailable = (e) => {
+                    audioChunks.push(e.data);
+                };
+                
+                mediaRecorder.onstop = () => {
+                    saveRecordingE();
+                };
+                
+                mediaRecorder.start();
+                
+                if (num === 1) {
+                    document.getElementById('recordWord1BtnE').classList.add('recording');
+                } else {
+                    document.getElementById('recordWord2BtnE').classList.add('recording');
+                }
+                
+                recordingTimer = setTimeout(() => {
+                    stopRecordingE();
+                }, 3000);
+                
+            } catch (e) {
+                console.error('录音失败:', e);
+                alert('无法访问麦克风，请检查权限设置');
+            }
+        }
+        
+        function stopRecordingE() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+            }
+            
+            if (recordingTimer) {
+                clearTimeout(recordingTimer);
+                recordingTimer = null;
+            }
+            
+            document.getElementById('recordWord1BtnE').classList.remove('recording');
+            document.getElementById('recordWord2BtnE').classList.remove('recording');
+        }
+        
+        function saveRecordingE() {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+            const url = URL.createObjectURL(audioBlob);
+            
+            if (currentRecordingNumE === 1) {
+                recording1ExistsE = true;
+                document.getElementById('listenWord1BtnE').disabled = false;
+                window.recordedAudio1E = url;
+            } else {
+                recording2ExistsE = true;
+                document.getElementById('listenWord2BtnE').disabled = false;
+                window.recordedAudio2E = url;
+            }
+        }
+        
         function checkRecordings() {
         }
         
@@ -555,7 +903,91 @@
             if (currentPicture < totalPictures) {
                 currentPicture++;
                 loadPicture();
+            } else {
+                goToSectionE();
             }
+        }
+        
+        function goToSectionE() {
+            showSection('section-e');
+        }
+        
+        function goToSectionF() {
+            showSection('section-f');
+            currentQuestion = 0;
+            score = 0;
+            loadQuestion();
+        }
+        
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `第 ${currentQuestion + 1} / ${questions.length} 题`;
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option) => {
+                const optionCard = document.createElement('div');
+                optionCard.className = 'option-card';
+                optionCard.innerHTML = `
+                    <div class="option-label">${option.label}</div>
+                    <img src="${option.img}" class="option-img" alt="${option.text}">
+                    <div class="option-text">${option.text}</div>
+                `;
+                optionCard.addEventListener('click', () => selectOption(option.label));
+                optionsContainer.appendChild(optionCard);
+            });
+            
+            document.getElementById('nextQuestionBtn').disabled = true;
+            selectedOption = null;
+            
+            playAudio(question.audio);
+        }
+        
+        function selectOption(label) {
+            if (selectedOption !== null) return;
+            
+            selectedOption = label;
+            const question = questions[currentQuestion];
+            const optionCards = document.querySelectorAll('.option-card');
+            
+            optionCards.forEach((card, index) => {
+                const optionLabel = question.options[index].label;
+                card.style.pointerEvents = 'none';
+                
+                if (optionLabel === label) {
+                    if (label === question.answer) {
+                        card.classList.add('correct');
+                        score++;
+                    } else {
+                        card.classList.add('wrong');
+                    }
+                } else if (optionLabel === question.answer) {
+                    card.classList.add('correct');
+                }
+            });
+            
+            document.getElementById('nextQuestionBtn').disabled = false;
+        }
+        
+        function replayQuestionAudio() {
+            const question = questions[currentQuestion];
+            playAudio(question.audio);
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+        
+        function showResult() {
+            document.getElementById('resultScore').textContent = `得分：${score} / ${questions.length}`;
+            document.getElementById('resultMessage').classList.add('show');
         }
     </script>
 </body>
